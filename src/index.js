@@ -36,25 +36,23 @@ class Square extends React.Component {
       let full = "TIED";
       //column check
       for(let i = 0; i <= 2; i++){
-        if(squares[i] == null) full = false;
-        if(squares[i] === squares[i+3] && squares[i+3] === squares[i+6]) return squares[i] ;
+        if(squares[i] != null && squares[i] === squares[i+3] && squares[i+3] === squares[i+6]) return (squares[i] + ' WON');
       }
       //row check
       for(let i = 0; i <= 6; i += 3){
-        if(squares[i] == null) full = false;
-        if(squares[i] === squares[i+1] && squares[i+1] === squares[i+2]) return squares[i];
+        if(squares[i] == null || squares[i+1] == null || squares[i+2] == null) full = "NOT EMPTY";
+        if(squares[i] != null && squares[i] === squares[i+1] && squares[i+1] === squares[i+2]) return (squares[i] + ' WON');
       }
       //diagonal check
       for(let i = 8; i >= 6; i -= 2){
-        if(squares[i] == null) full = false;
-        if(squares[i] === squares[4] && squares[4] === squares[i%4]) return squares[i];
+        if(squares[i] != null && squares[i] === squares[4] && squares[4] === squares[i%4]) return (squares[i] + ' WON');
       }
       return full;
     }
 
     handleClick(i){
       const squares = this.state.squares.slice();
-      if (this.determineWinner(squares)){
+      if (this.determineWinner(squares) !== "NOT EMPTY"){
         this.setState({
           squares: Array(9).fill(null),
           xTurn: true
@@ -78,7 +76,7 @@ class Square extends React.Component {
   
     render() {
       const winner = this.determineWinner(this.state.squares);
-      let status = (winner) ? winner + ' 🤯🤯🤯': 'Current player: ' + (this.state.xTurn ? 'X' : 'O');
+      let status = (winner !== "NOT EMPTY") ? winner + ' 🤯🤯🤯': 'Current player: ' + (this.state.xTurn ? 'X' : 'O');
       //const status = 'Current player: ' + (this.state.xTurn ? 'X' : 'O');
   
       return (
