@@ -34,18 +34,36 @@ ol, ul {
 }
 
 .square {
-  background: #fff;
-  border: 1px solid #999;
+  color: white;
+  background: black;
+  border: 1px solid white;
   float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
+  /*height: 34px;*/
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  /*width: 34px;*/
+  position: relative;
+  width: 10vw;
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.square:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
 }
 
 .square:focus {
