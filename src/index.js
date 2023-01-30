@@ -32,7 +32,7 @@ class Square extends React.Component {
       };
     }
 
-    determineWinner(squares){
+    evaluateGame(squares){
       let full = "TIED";
       //column check
       for(let i = 0; i <= 2; i++){
@@ -52,7 +52,7 @@ class Square extends React.Component {
 
     handleClick(i){
       const squares = this.state.squares.slice();
-      if (this.determineWinner(squares) !== "NOT EMPTY"){
+      if (this.evaluateGame(squares) !== "NOT EMPTY"){
         this.setState({
           squares: Array(9).fill(null),
           xTurn: true
@@ -75,7 +75,7 @@ class Square extends React.Component {
     }
   
     render() {
-      const winner = this.determineWinner(this.state.squares);
+      const winner = this.evaluateGame(this.state.squares);
       let status = (winner !== "NOT EMPTY") ? winner + ' 🤯🤯🤯': 'Current player: ' + (this.state.xTurn ? 'X' : 'O');
       //const status = 'Current player: ' + (this.state.xTurn ? 'X' : 'O');
   
