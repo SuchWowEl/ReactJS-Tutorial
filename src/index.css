@@ -30,7 +30,10 @@ ol, ul {
 }
 
 .status {
+  height: 5vh;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .square {
